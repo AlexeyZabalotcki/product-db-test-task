@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <title>Categories catalog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<table class="table table-bordered table-striped table table-hover">
+    <thead class="thead-dark">
+    <thead>
+    <tr>
+        <th style="width: 5%">ID</th>
+        <th>Name</th>
+        <th style="width: 25%">Description</th>
+        <th style="width: 5%">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="category : ${categories}">
+        <td th:text="${category.categoryId}"/>
+        <td th:text="${category.categoryName}"/>
+        <td>
+            <a th:href="@{/category/showCategoryInfo(id=${category.categoryId})}"
+               class="btn btn-outline-info" style="width: 100%">
+                Description
+            </a>
+        </td>
+        <td>
+            <a th:href="@{/category/delete(id=${category.categoryId})}"
+               class="btn btn-danger"
+               onclick="if (!(confirm('Are you sure you want to delete this Category of products?'))) return false">
+                Delete
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<hr>
+
+<a th:href="@{/suppliers/add}"
+   class="btn btn-primary  btn-sm active"
+   style="width: 20%">Add Suppliers
+</a>
+<hr>
+<a th:href="@{/products}">Back to Products List</a>
+
+</html>

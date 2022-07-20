@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Suppliers catalog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<table class="table table-bordered table-striped table table-hover">
+    <thead class="thead-light ">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Country</th>
+        <th style="width: 5%">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="supplier : ${suppliers}">
+        <td th:text="${supplier.supplierId}"/>
+        <td th:text="${supplier.supplierName}"/>
+        <td th:text="${supplier.city}"/>
+        <td th:text="${supplier.country}"/>
+        <td>
+            <a th:href="@{/suppliers/delete(id=${supplier.supplierId})}"
+               class="btn btn-danger"
+               onclick="if (!(confirm('Are you sure you want to delete this Supplier of products?'))) return false">
+                Delete
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<hr>
+
+<a th:href="@{/products/add}"
+   class="btn btn-primary btn-sm active " style="width: 20%">
+    Add Products Information
+</a>
+
+<hr>
+<a th:href="@{/products}">Back to Products List</a>
+
+</html>
