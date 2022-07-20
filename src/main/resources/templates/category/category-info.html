@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Product Information</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>Category Information</h3>
+    <hr>
+
+    <table class="table table-bordered table-striped table table-hover">
+        <thead class="thead-light ">
+        <tr>
+            <th>Information</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr class="table-info">
+
+            <td th:text="${category.description}"/>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <a th:href="@{/products}">Back to Products List</a>
+    <hr>
+    <a th:href="@{/category}">Back to Categories List</a>
+    <hr>
+    <a th:href="@{/suppliers}">Go to Suppliers List</a>
+
+</div>
+</body>
+
