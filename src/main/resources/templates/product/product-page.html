@@ -69,8 +69,11 @@
     </a>
     <br>
     <br>
-    <a th:href="@{/login}"
-       class="btn btn-secondary  btn-lg active"
-       style="width: 9%">Logout</a>
+    <form th:action="@{/logout}"
+          method="POST" class="form-horizontal">
+        <input type="submit" value="Logout"
+               class="btn btn-danger btn-lg active"
+               style="width: 9%" />
+    </form>
 </td>
 </html>

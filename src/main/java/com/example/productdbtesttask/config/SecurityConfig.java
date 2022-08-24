@@ -32,10 +32,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .failureUrl("/login?error=true")
                         .permitAll()
                         .and()
-                ).logout()
-                .permitAll();
-                /*.and()
-                .exceptionHandling().accessDeniedPage("/exception");*/
+                ).logout().permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/exception");
     }
 
     @Override
