@@ -3,6 +3,7 @@ package com.example.productdbtesttask.controller;
 import com.example.productdbtesttask.entity.Product;
 import com.example.productdbtesttask.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,7 @@ public class ProductController {
     }
 
     @GetMapping("/add")
+    @Secured("ROLE_ADMIN")
     public String showAddProductForm(Model model) {
         Product product = new Product();
         model.addAttribute("product", product);
@@ -33,6 +35,7 @@ public class ProductController {
     }
 
     @GetMapping("/edit/{id}")
+    @Secured("ROLE_ADMIN")
     public String showEditProductForm(Model model, @PathVariable(value = "id") int id) {
         Product product = productService.findById(id);
         model.addAttribute("product", product);
@@ -40,12 +43,14 @@ public class ProductController {
     }
 
     @PostMapping("/edit")
+    @Secured("ROLE_ADMIN")
     public String addProduct(@ModelAttribute(value = "product") Product product) {
         productService.saveOrUpdate(product);
         return "redirect:/products";
     }
 
     @GetMapping("/delete")
+    @Secured("ROLE_ADMIN")
     public String deleteById(@ModelAttribute(value = "id") int id) {
         Product product = productService.findById(id);
 

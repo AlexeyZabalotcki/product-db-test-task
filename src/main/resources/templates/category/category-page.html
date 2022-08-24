@@ -15,7 +15,7 @@
         <th style="width: 5%">ID</th>
         <th>Name</th>
         <th style="width: 25%">Description</th>
-        <th style="width: 5%">Action</th>
+        <th sec:authorize="hasRole('ADMIN')" style="width: 5%">Action</th>
     </tr>
     </thead>
     <tbody>
@@ -28,7 +28,7 @@
                 Description
             </a>
         </td>
-        <td>
+        <td sec:authorize="hasRole('ADMIN')">
             <a th:href="@{/category/delete(id=${category.categoryId})}"
                class="btn btn-danger"
                onclick="if (!(confirm('Are you sure you want to delete this Category of products?'))) return false">
@@ -41,7 +41,7 @@
 
 <hr>
 
-<a th:href="@{/suppliers/add}"
+<a sec:authorize="hasRole('ADMIN')" th:href="@{/suppliers/add}"
    class="btn btn-primary  btn-sm active"
    style="width: 20%">Add Suppliers
 </a>

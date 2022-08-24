@@ -13,25 +13,25 @@
     <thead class="thead-light ">
     <thead>
     <tr>
-        <th>ID</th>
+        <th sec:authorize="hasRole('ADMIN')">ID</th>
         <th>Title</th>
-        <th>SupplierId</th>
+        <th sec:authorize="hasRole('ADMIN')">SupplierId</th>
         <th>CategoryId</th>
         <th>Price</th>
-        <th style="width: 5%">Action</th>
+        <th sec:authorize="hasRole('ADMIN')" style="width: 5%">Action</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="product : ${products}">
-        <td th:text="${product.productId}"/>
+        <td sec:authorize="hasRole('ADMIN')" th:text="${product.productId}"/>
         <td th:text="${product.productName}"/>
-        <td th:text="${product.supplierId}"/>
+        <td sec:authorize="hasRole('ADMIN')" th:text="${product.supplierId}"/>
         <td>
             <a th:href="@{/category/showCategoryInfo(id=${product.categoryId})}"
                th:text="${product.categoryId}"/>
         </td>
         <td th:text="${product.price}"/>
-        <td>
+        <td sec:authorize="hasRole('ADMIN')">
             <a th:href="@{/products/delete(id=${product.productId})}"
                class="btn btn-danger btn-sm"
                onclick="if (!(confirm('Are you sure you want to delete this Product?'))) return false">
@@ -43,7 +43,7 @@
 </table>
 <br/>
 <td>
-    <div class="text-center">
+    <div sec:authorize="hasRole('ADMIN')" class="text-center">
         <a th:href="@{/products/add}"
            class="btn btn-primary btn-lg active " style="width: 50%">
             Add Products Information
@@ -53,19 +53,24 @@
     <a th:href="@{/category}"
        class="btn btn-secondary btn-lg active"
        style="width: 49%">Show Category page</a>
-    <a th:href="@{/category/add}"
+    <a sec:authorize="hasRole('ADMIN')" th:href="@{/category/add}"
        class="btn btn-primary  btn-lg active"
        style="width: 49%">
         Add Category
     </a>
     <br>
     <br>
-    <a th:href="@{/suppliers}"
+    <a sec:authorize="hasRole('ADMIN')" th:href="@{/suppliers}"
        class="btn btn-secondary btn-lg active"
        style="width: 49%">Show Suppliers page</a>
-    <a th:href="@{/suppliers/add}"
+    <a sec:authorize="hasRole('ADMIN')" th:href="@{/suppliers/add}"
        class="btn btn-primary  btn-lg active"
        style="width: 49%">Add Suppliers
     </a>
+    <br>
+    <br>
+    <a th:href="@{/login}"
+       class="btn btn-secondary  btn-lg active"
+       style="width: 9%">Logout</a>
 </td>
 </html>

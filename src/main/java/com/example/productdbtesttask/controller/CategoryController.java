@@ -3,6 +3,7 @@ package com.example.productdbtesttask.controller;
 import com.example.productdbtesttask.entity.Category;
 import com.example.productdbtesttask.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,7 @@ public class CategoryController {
     }
 
     @GetMapping("/add")
+    @Secured("ROLE_ADMIN")
     public String showAddProductForm(Model model) {
         Category category = new Category();
         model.addAttribute("category", category);
@@ -39,6 +41,7 @@ public class CategoryController {
     }
 
     @GetMapping("/edit/{id}")
+    @Secured("ROLE_ADMIN")
     public String showEditProductForm(Model model, @PathVariable(value = "id") int id) {
         Category category = categoryService.findById(id);
         model.addAttribute("category", category);
@@ -46,12 +49,14 @@ public class CategoryController {
     }
 
     @PostMapping("/edit")
+    @Secured("ROLE_ADMIN")
     public String addProduct(@ModelAttribute(value = "category") Category category) {
         categoryService.saveOrUpdate(category);
         return "redirect:/category";
     }
 
     @GetMapping("/delete")
+    @Secured("ROLE_ADMIN")
     public String deleteById(@ModelAttribute(value = "id") int id) {
         categoryService.remove(id);
         return "redirect:/category";
