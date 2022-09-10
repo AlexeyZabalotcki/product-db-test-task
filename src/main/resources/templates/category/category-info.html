@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <!-- Required meta tags -->
@@ -41,7 +42,7 @@
     <hr>
     <a th:href="@{/category}">Back to Categories List</a>
     <hr>
-    <a th:href="@{/suppliers}">Go to Suppliers List</a>
+    <a sec:authorize="hasRole('ADMIN')" th:href="@{/suppliers}">Go to Suppliers List</a>
 
 </div>
 </body>

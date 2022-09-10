@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
     <title>Work with products</title>
@@ -8,7 +10,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body sec:authorize="hasRole('ADMIN')">
 <h3 th:text="${category.categoryId == 0 ? 'Add category' : 'Edit category'}"></h3>
 <div class="container">
 
