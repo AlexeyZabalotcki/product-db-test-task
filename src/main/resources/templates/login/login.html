@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="utf-8"/>
 
@@ -80,6 +80,10 @@
                             <div style="margin-top: 10px" class="form-group">
                                 <div class="col-sm-6 controls">
                                     <button type="submit" class="btn btn-success">Login</button>
+                                    <a  th:href="@{/register}"
+                                        class="btn btn-primary  btn active"
+                                        style="width: 40%">Sign up
+                                    </a>
                                 </div>
                             </div>
                         </div>
