@@ -19,6 +19,7 @@ public class UserEntity {
     @GeneratedValue(
             strategy = GenerationType.IDENTITY
     )
+    @Column(name = "user_id")
     private Long id;
     private String username;
     private String password;
@@ -27,8 +28,8 @@ public class UserEntity {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_authorities",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id")
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "authority_id")
     )
     private Set<Role> roles = new HashSet<>();
 }
