@@ -3,6 +3,7 @@ package com.example.productdbtesttask.controller;
 import com.example.productdbtesttask.data.UserData;
 import com.example.productdbtesttask.exceptions.UserAlreadyExistException;
 import com.example.productdbtesttask.service.RoleService;
+import com.example.productdbtesttask.service.UserRoleService;
 import com.example.productdbtesttask.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,9 @@ public class RegisterController {
     @Autowired
     private RoleService roleService;
 
+    @Autowired
+    private UserRoleService userRoleService;
+
     @GetMapping
     public String register(final Model model) {
         model.addAttribute("userData", new UserData());
@@ -38,6 +42,7 @@ public class RegisterController {
         try {
             userService.register(userData);
             roleService.register(userData);
+            userRoleService.register(userData);
         } catch (UserAlreadyExistException ex) {
             bindingResult.rejectValue("username", "userData.username",
                     "An account already exist for this username");
